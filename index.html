@@ -42,7 +42,8 @@
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
     
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/7_UwufXoK/";
+        
+        const URL = "https://teachablemachine.withgoogle.com/models/Pvswslqwf/";
     
         let model, webcam, labelContainer, maxPredictions;
     
@@ -90,7 +91,7 @@
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 console.log(prediction[i].probability.toFixed(2));
                 /*if(prediction[i].probability.toFixed(2) < 0.5) {
-                    classPrediction = "No Disease Detected";
+                    classPrediction = prediction[i].className +" :" + "Not Detected";
                 }
                 else if(prediction[i].probability.toFixed(2) >= 0.5){
                     classPrediction = prediction[i].className +" :" +  " Detected";
