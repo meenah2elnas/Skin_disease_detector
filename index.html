@@ -56,7 +56,13 @@
             // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
             // or files from your local hard drive
             // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+            labelContainer = document.getElementById("label-container");
+            labelContainer.appendChild(document.createElement("div")).innerHTML = "Model is loading... Please wait";
+          
+
             model = await tmImage.load(modelURL, metadataURL);
+            labelContainer.removeChild(labelContainer.firstChild); // Remove the loading message
+            labelContainer.appendChild(document.createElement("div")).innerHTML = "Please allow this application use your camera";
             maxPredictions = model.getTotalClasses();
     
             // Convenience function to setup a webcam
@@ -88,7 +94,7 @@
             for (let i = 0; i < maxPredictions; i++) {
                 
                 let classPrediction =
-                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2) * 100 + '%';
                 console.log(prediction[i].probability.toFixed(2));
                 /*if(prediction[i].probability.toFixed(2) < 0.5) {
                     classPrediction = prediction[i].className +" :" + "Not Detected";
